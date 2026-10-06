@@ -1,0 +1,766 @@
+{
+ "version": 1,
+ "region": "Méditerranée nord-occidentale",
+ "groups": [
+  "Poissons",
+  "Céphalopodes",
+  "Mollusques",
+  "Crustacés",
+  "Échinodermes",
+  "Cnidaires",
+  "Éponges",
+  "Vers",
+  "Ascidies",
+  "Plantes",
+  "Reptiles et mammifères"
+ ],
+ "species": [
+  {
+   "id": "epinephelus-marginatus",
+   "fr": "Mérou brun",
+   "la": "Epinephelus marginatus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1,2 m",
+   "prof": "5 – 50 m",
+   "protege": true,
+   "desc": "Grand serranidé massif et territorial, souvent posté à l'entrée d'une faille. Emblème des réserves marines, il se laisse approcher là où il est protégé.",
+   "indice": "Corps brun marbré de taches claires irrégulières, grande bouche, nageoire caudale bordée de blanc."
+  },
+  {
+   "id": "coris-julis",
+   "fr": "Girelle commune",
+   "la": "Coris julis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 25 cm",
+   "prof": "0 – 60 m",
+   "desc": "Petit labre fusiforme omniprésent près des roches. Change de sexe et de livrée au cours de sa vie : les mâles terminaux sont les plus colorés.",
+   "indice": "Mâle : bande orange en zigzag sur le flanc et tache noire derrière la nageoire pectorale. Femelle : brune à ventre clair."
+  },
+  {
+   "id": "thalassoma-pavo",
+   "fr": "Girelle-paon",
+   "la": "Thalassoma pavo",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 25 cm",
+   "prof": "1 – 50 m",
+   "desc": "Labre d'eaux chaudes, de plus en plus fréquent vers le nord de la Méditerranée. Nage vive par battements de pectorales.",
+   "indice": "Mâle vert-bleu avec une barre verticale rouge et bleue derrière la tête ; femelle verdâtre à fines barres sombres."
+  },
+  {
+   "id": "chromis-chromis",
+   "fr": "Castagnole",
+   "la": "Chromis chromis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 15 cm",
+   "prof": "2 – 35 m",
+   "desc": "Petit poisson grégaire qui forme des bancs en pleine eau au-dessus des tombants et des herbiers.",
+   "indice": "Adulte brun sombre à queue très fourchue ; les juvéniles sont d'un bleu électrique."
+  },
+  {
+   "id": "diplodus-sargus",
+   "fr": "Sar commun",
+   "la": "Diplodus sargus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 45 cm",
+   "prof": "0 – 50 m",
+   "desc": "Sparidé argenté qui patrouille en petits groupes près des fonds rocheux.",
+   "indice": "Corps argenté avec de fines rayures verticales sombres alternées et une tache noire sur le pédoncule caudal."
+  },
+  {
+   "id": "diplodus-vulgaris",
+   "fr": "Sar à tête noire",
+   "la": "Diplodus vulgaris",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 45 cm",
+   "prof": "0 – 60 m",
+   "desc": "Sparidé commun des fonds rocheux et des herbiers, souvent mêlé aux autres sars.",
+   "indice": "Deux larges bandes noires : une sur la nuque, l'autre sur le pédoncule caudal."
+  },
+  {
+   "id": "diplodus-puntazzo",
+   "fr": "Sar à museau pointu",
+   "la": "Diplodus puntazzo",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 60 cm",
+   "prof": "0 – 50 m",
+   "desc": "Sar plus discret, à la silhouette haute, qui fréquente les zones rocheuses.",
+   "indice": "Museau nettement pointu, bandes verticales sombres bien marquées et tache noire sur la queue."
+  },
+  {
+   "id": "sarpa-salpa",
+   "fr": "Saupe",
+   "la": "Sarpa salpa",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 45 cm",
+   "prof": "0 – 20 m",
+   "desc": "Sparidé herbivore qui broute les algues et la posidonie en bancs serrés, souvent près de la surface.",
+   "indice": "Fines lignes longitudinales jaune doré sur fond gris argenté, œil jaune."
+  },
+  {
+   "id": "oblada-melanura",
+   "fr": "Oblade",
+   "la": "Oblada melanura",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 30 cm",
+   "prof": "0 – 30 m",
+   "desc": "Sparidé en bancs à mi-eau, vif et méfiant, fréquent le long des côtes rocheuses.",
+   "indice": "Grande tache noire bordée de blanc sur le pédoncule caudal, gros œil."
+  },
+  {
+   "id": "sparus-aurata",
+   "fr": "Daurade royale",
+   "la": "Sparus aurata",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 70 cm",
+   "prof": "0 – 30 m",
+   "desc": "Sparidé recherché, présent sur fonds variés et dans les lagunes ; elle broie coquillages et oursins.",
+   "indice": "Bandeau doré entre les yeux et tache sombre à l'origine de la ligne latérale."
+  },
+  {
+   "id": "dentex-dentex",
+   "fr": "Denti",
+   "la": "Dentex dentex",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1 m",
+   "prof": "15 – 200 m",
+   "desc": "Grand prédateur qui chasse en pleine eau le long des tombants, souvent en passages rapides.",
+   "indice": "Profil puissant, corps argenté-rosé ponctué de petits points bleus, crocs visibles."
+  },
+  {
+   "id": "spicara-maena",
+   "fr": "Mendole",
+   "la": "Spicara maena",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 25 cm",
+   "prof": "10 – 100 m",
+   "desc": "Petit poisson grégaire des fonds sableux et herbiers ; les mâles creusent des nids au printemps.",
+   "indice": "Tache sombre rectangulaire au milieu du flanc ; bouche très protractile."
+  },
+  {
+   "id": "serranus-scriba",
+   "fr": "Serran écriture",
+   "la": "Serranus scriba",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 35 cm",
+   "prof": "0 – 30 m",
+   "desc": "Petit serranidé curieux et solitaire, posé près des roches et dans la posidonie.",
+   "indice": "Dessins bleus sinueux sur la tête, comme une écriture, et tache bleue sur le ventre."
+  },
+  {
+   "id": "serranus-cabrilla",
+   "fr": "Serran chevrette",
+   "la": "Serranus cabrilla",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 40 cm",
+   "prof": "5 – 200 m",
+   "desc": "Serranidé un peu plus profond que le serran écriture, souvent sur fonds mixtes.",
+   "indice": "Bandes verticales sombres et lignes longitudinales orangées sur la tête, sans dessins en écriture."
+  },
+  {
+   "id": "anthias-anthias",
+   "fr": "Barbier",
+   "la": "Anthias anthias",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 25 cm",
+   "prof": "15 – 300 m",
+   "desc": "Petit serranidé rouge qui forme des nuées devant les grottes et les tombants ombragés.",
+   "indice": "Rose-rouge vif, nageoires ventrales très longues, lignes jaunes sur la joue."
+  },
+  {
+   "id": "scorpaena-porcus",
+   "fr": "Rascasse brune",
+   "la": "Scorpaena porcus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 35 cm",
+   "prof": "0 – 40 m",
+   "desc": "Poisson immobile et parfaitement camouflé sur les roches. Ses épines sont venimeuses : on regarde sans toucher.",
+   "indice": "Brun marbré, lambeaux de peau au-dessus des yeux, pas de barbillons sous le menton."
+  },
+  {
+   "id": "scorpaena-scrofa",
+   "fr": "Rascasse rouge",
+   "la": "Scorpaena scrofa",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 50 cm",
+   "prof": "20 – 200 m",
+   "desc": "La plus grande des rascasses, aussi appelée chapon, plus profonde que la rascasse brune.",
+   "indice": "Teinte rouge-orangé et nombreux lambeaux cutanés sous le menton."
+  },
+  {
+   "id": "muraena-helena",
+   "fr": "Murène",
+   "la": "Muraena helena",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1,5 m",
+   "prof": "0 – 80 m",
+   "desc": "Poisson serpentiforme qui passe la journée tête sortie d'un trou. Elle ouvre la bouche pour respirer, pas pour menacer.",
+   "indice": "Corps sombre semé de taches jaunes, pas de nageoires pectorales."
+  },
+  {
+   "id": "conger-conger",
+   "fr": "Congre",
+   "la": "Conger conger",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 2 m",
+   "prof": "0 – 500 m",
+   "desc": "Grand poisson serpentiforme nocturne, souvent caché dans les épaves et les failles.",
+   "indice": "Gris-bleu uni, nageoires pectorales visibles et nageoire dorsale bordée de noir."
+  },
+  {
+   "id": "sciaena-umbra",
+   "fr": "Corb",
+   "la": "Sciaena umbra",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 70 cm",
+   "prof": "5 – 50 m",
+   "desc": "Poisson grégaire et craintif qui reste à l'abri des éboulis et des grottes. Bénéficie d'un moratoire de pêche en France.",
+   "indice": "Brun bronze à reflets dorés, nageoires ventrales et anale noires bordées de blanc."
+  },
+  {
+   "id": "sphyraena-viridensis",
+   "fr": "Barracuda de Méditerranée",
+   "la": "Sphyraena viridensis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1,2 m",
+   "prof": "0 – 100 m",
+   "desc": "Prédateur fusiforme qui forme des bancs immobiles en pleine eau, de plus en plus fréquent en été.",
+   "indice": "Corps allongé argenté, mâchoire inférieure proéminente, barres sombres sur le dos."
+  },
+  {
+   "id": "mullus-surmuletus",
+   "fr": "Rouget de roche",
+   "la": "Mullus surmuletus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 40 cm",
+   "prof": "0 – 100 m",
+   "desc": "Il fouille le sable avec ses barbillons, souvent suivi de labres opportunistes.",
+   "indice": "Deux barbillons sous le menton, ligne jaune sur le flanc, dorsale rayée."
+  },
+  {
+   "id": "labrus-merula",
+   "fr": "Labre merle",
+   "la": "Labrus merula",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 45 cm",
+   "prof": "1 – 50 m",
+   "desc": "Gros labre solitaire des fonds rocheux et des herbiers.",
+   "indice": "Bleu-vert très sombre presque uniforme, nageoires bordées de bleu."
+  },
+  {
+   "id": "labrus-viridis",
+   "fr": "Labre vert",
+   "la": "Labrus viridis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 45 cm",
+   "prof": "1 – 50 m",
+   "desc": "Labre élancé qui vit surtout dans les herbiers de posidonie.",
+   "indice": "Vert vif, souvent avec une bande claire longitudinale, museau allongé."
+  },
+  {
+   "id": "symphodus-tinca",
+   "fr": "Crénilabre paon",
+   "la": "Symphodus tinca",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 35 cm",
+   "prof": "0 – 50 m",
+   "desc": "Le plus grand des crénilabres, très commun près des roches.",
+   "indice": "Museau allongé, mâle couvert de points rouges et bleus sur fond verdâtre."
+  },
+  {
+   "id": "symphodus-ocellatus",
+   "fr": "Crénilabre ocellé",
+   "la": "Symphodus ocellatus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 12 cm",
+   "prof": "0 – 30 m",
+   "desc": "Petit labre des petits fonds ; au printemps les mâles bâtissent des nids d'algues.",
+   "indice": "Ocelle noir cerclé de rouge sur l'opercule."
+  },
+  {
+   "id": "parablennius-pilicornis",
+   "fr": "Blennie pilicorne",
+   "la": "Parablennius pilicornis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 12 cm",
+   "prof": "0 – 15 m",
+   "desc": "Petit poisson curieux qui sort la tête d'un trou ou se pose sur les rochers.",
+   "indice": "Petites houppes ramifiées au-dessus des yeux, livrée variable."
+  },
+  {
+   "id": "tripterygion-delaisi",
+   "fr": "Triptérygion jaune",
+   "la": "Tripterygion delaisi",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 9 cm",
+   "prof": "3 – 50 m",
+   "desc": "Minuscule poisson des parois ombragées ; on le repère à la lampe.",
+   "indice": "Mâle nuptial jaune vif à tête noire ; trois nageoires dorsales."
+  },
+  {
+   "id": "gobius-cruentatus",
+   "fr": "Gobie ensanglanté",
+   "la": "Gobius cruentatus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 18 cm",
+   "prof": "1 – 40 m",
+   "desc": "Gobie posé sur le fond près des roches et des herbiers, immobile entre deux déplacements.",
+   "indice": "Taches rouge sang sur les lèvres et les joues."
+  },
+  {
+   "id": "apogon-imberbis",
+   "fr": "Apogon",
+   "la": "Apogon imberbis",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 15 cm",
+   "prof": "5 – 200 m",
+   "desc": "Petit poisson rouge des grottes et des surplombs, appelé aussi roi des rougets. Le mâle incube les œufs dans sa bouche.",
+   "indice": "Rouge-orangé, gros yeux, deux dorsales séparées."
+  },
+  {
+   "id": "mola-mola",
+   "fr": "Poisson-lune",
+   "la": "Mola mola",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 3 m",
+   "prof": "0 – 500 m",
+   "desc": "Le plus lourd des poissons osseux, rencontré au large près de la surface, souvent en fin de printemps.",
+   "indice": "Corps disque aplati, sans vraie queue, avec une grande dorsale et une grande anale."
+  },
+  {
+   "id": "hippocampus-guttulatus",
+   "fr": "Hippocampe moucheté",
+   "la": "Hippocampus guttulatus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 18 cm",
+   "prof": "1 – 20 m",
+   "protege": true,
+   "desc": "Discret, il s'accroche par la queue aux herbiers et aux algues. Le mâle porte les œufs.",
+   "indice": "Petits points blancs sur le corps et filaments sur la tête et le dos."
+  },
+  {
+   "id": "dasyatis-pastinaca",
+   "fr": "Pastenague commune",
+   "la": "Dasyatis pastinaca",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1,5 m",
+   "prof": "0 – 200 m",
+   "desc": "Raie posée ou enfouie dans le sable. L'aiguillon de sa queue est venimeux : on garde ses distances.",
+   "indice": "Disque en losange lisse, queue fine en fouet avec un aiguillon."
+  },
+  {
+   "id": "torpedo-marmorata",
+   "fr": "Torpille marbrée",
+   "la": "Torpedo marmorata",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1 m",
+   "prof": "2 – 100 m",
+   "desc": "Raie électrique qui se cache dans le sable et peut délivrer une décharge à qui la touche.",
+   "indice": "Disque arrondi marbré, queue courte et épaisse avec une nageoire caudale."
+  },
+  {
+   "id": "zeus-faber",
+   "fr": "Saint-Pierre",
+   "la": "Zeus faber",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 60 cm",
+   "prof": "5 – 200 m",
+   "desc": "Chasseur lent qui s'approche de face de ses proies grâce à son corps très plat.",
+   "indice": "Grosse tache noire cerclée de clair au milieu du flanc, longs filaments dorsaux."
+  },
+  {
+   "id": "balistes-capriscus",
+   "fr": "Baliste",
+   "la": "Balistes capriscus",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 60 cm",
+   "prof": "0 – 100 m",
+   "desc": "Poisson au corps haut qui nage en ondulant ses nageoires dorsale et anale. Peut défendre son nid avec vigueur en été.",
+   "indice": "Première épine dorsale qui se verrouille, petite bouche à fortes dents, gris-brun."
+  },
+  {
+   "id": "trachinus-draco",
+   "fr": "Grande vive",
+   "la": "Trachinus draco",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 40 cm",
+   "prof": "1 – 150 m",
+   "desc": "Enfouie dans le sable, elle ne laisse dépasser que les yeux. Ses épines dorsales et operculaires sont venimeuses.",
+   "indice": "Première dorsale noire, rayures obliques bleues et jaunes sur le flanc."
+  },
+  {
+   "id": "dicentrarchus-labrax",
+   "fr": "Loup (bar)",
+   "la": "Dicentrarchus labrax",
+   "groupe": "Poissons",
+   "taille": "jusqu'à 1 m",
+   "prof": "0 – 100 m",
+   "desc": "Prédateur argenté des petits fonds et des zones agitées, souvent près des embouchures.",
+   "indice": "Corps argenté sans motif, tache sombre sur l'opercule, deux dorsales."
+  },
+  {
+   "id": "octopus-vulgaris",
+   "fr": "Poulpe commun",
+   "la": "Octopus vulgaris",
+   "groupe": "Céphalopodes",
+   "taille": "jusqu'à 1,2 m bras compris",
+   "prof": "0 – 100 m",
+   "desc": "Animal intelligent qui change de couleur et de texture en un instant. Son terrier se trahit par un amas de coquilles vides.",
+   "indice": "Huit bras à deux rangées de ventouses, peau capable de se hérisser."
+  },
+  {
+   "id": "sepia-officinalis",
+   "fr": "Seiche commune",
+   "la": "Sepia officinalis",
+   "groupe": "Céphalopodes",
+   "taille": "jusqu'à 45 cm",
+   "prof": "0 – 200 m",
+   "desc": "Céphalopode qui plane au-dessus du sable en ondulant sa nageoire et fait défiler des vagues de couleur.",
+   "indice": "Nageoire en collerette tout autour du manteau, pupille en W."
+  },
+  {
+   "id": "loligo-vulgaris",
+   "fr": "Calmar commun",
+   "la": "Loligo vulgaris",
+   "groupe": "Céphalopodes",
+   "taille": "jusqu'à 50 cm",
+   "prof": "0 – 500 m",
+   "desc": "Céphalopode de pleine eau, plus souvent observé de nuit attiré par les lampes.",
+   "indice": "Corps fuselé avec deux nageoires triangulaires à l'arrière."
+  },
+  {
+   "id": "pinna-nobilis",
+   "fr": "Grande nacre",
+   "la": "Pinna nobilis",
+   "groupe": "Mollusques",
+   "taille": "jusqu'à 1,2 m",
+   "prof": "1 – 40 m",
+   "protege": true,
+   "desc": "Le plus grand coquillage de Méditerranée, plantée à la verticale dans la posidonie ou le sable. Décimée par un parasite depuis 2016 : chaque individu vivant compte.",
+   "indice": "Grande coquille triangulaire dressée, entrouverte quand l'animal est vivant."
+  },
+  {
+   "id": "peltodoris-atromaculata",
+   "fr": "Doris dalmatienne",
+   "la": "Peltodoris atromaculata",
+   "groupe": "Mollusques",
+   "taille": "jusqu'à 10 cm",
+   "prof": "5 – 100 m",
+   "desc": "Limace de mer qui se nourrit de l'éponge rein, sur laquelle on la trouve souvent.",
+   "indice": "Blanche à taches brun-noir, comme un dalmatien."
+  },
+  {
+   "id": "flabellina-affinis",
+   "fr": "Flabelline mauve",
+   "la": "Flabellina affinis",
+   "groupe": "Mollusques",
+   "taille": "jusqu'à 5 cm",
+   "prof": "5 – 50 m",
+   "desc": "Petit nudibranche qui broute les hydraires sur les tombants.",
+   "indice": "Entièrement violet-mauve, dos couvert de papilles en bouquets."
+  },
+  {
+   "id": "aplysia-fasciata",
+   "fr": "Lièvre de mer",
+   "la": "Aplysia fasciata",
+   "groupe": "Mollusques",
+   "taille": "jusqu'à 40 cm",
+   "prof": "0 – 20 m",
+   "desc": "Grosse limace de mer herbivore qui libère une encre violette quand on la dérange.",
+   "indice": "Brun-noir, deux rhinophores dressés en oreilles de lièvre, larges replis sur le dos."
+  },
+  {
+   "id": "palinurus-elephas",
+   "fr": "Langouste rouge",
+   "la": "Palinurus elephas",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 50 cm",
+   "prof": "10 – 200 m",
+   "desc": "Crustacé nocturne qui reste au fond des failles le jour, antennes dépassant de l'abri.",
+   "indice": "Très longues antennes épineuses, pas de pinces, carapace rouge-brun tachée de clair."
+  },
+  {
+   "id": "scyllarides-latus",
+   "fr": "Grande cigale",
+   "la": "Scyllarides latus",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 45 cm",
+   "prof": "5 – 100 m",
+   "desc": "Crustacé aplati et rare, caché sous les plafonds des grottes.",
+   "indice": "Antennes transformées en larges palettes, carapace plate brun-orangé."
+  },
+  {
+   "id": "homarus-gammarus",
+   "fr": "Homard européen",
+   "la": "Homarus gammarus",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 60 cm",
+   "prof": "5 – 150 m",
+   "desc": "Crustacé nocturne retranché dans les trous des éboulis rocheux.",
+   "indice": "Deux grosses pinces inégales, carapace bleu sombre."
+  },
+  {
+   "id": "lysmata-seticaudata",
+   "fr": "Crevette nettoyeuse",
+   "la": "Lysmata seticaudata",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 6 cm",
+   "prof": "0 – 60 m",
+   "desc": "Petite crevette des failles, souvent en groupe, qui débarrasse les poissons de leurs parasites.",
+   "indice": "Fines rayures longitudinales rouges sur fond translucide, longues antennes blanches."
+  },
+  {
+   "id": "galathea-strigosa",
+   "fr": "Galathée rouge",
+   "la": "Galathea strigosa",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 10 cm",
+   "prof": "0 – 600 m",
+   "desc": "Crustacé nerveux qui se cache sous les pierres et recule vivement quand on l'éclaire.",
+   "indice": "Rouge-orangé à fines lignes bleu électrique, longues pinces, abdomen replié."
+  },
+  {
+   "id": "dardanus-calidus",
+   "fr": "Bernard-l'ermite rouge",
+   "la": "Dardanus calidus",
+   "groupe": "Crustacés",
+   "taille": "jusqu'à 15 cm",
+   "prof": "1 – 30 m",
+   "desc": "Gros bernard-l'ermite qui porte souvent des anémones sur sa coquille pour se protéger.",
+   "indice": "Rouge vif, pince gauche plus grosse que la droite, yeux sur pédoncules."
+  },
+  {
+   "id": "paracentrotus-lividus",
+   "fr": "Oursin violet",
+   "la": "Paracentrotus lividus",
+   "groupe": "Échinodermes",
+   "taille": "jusqu'à 7 cm",
+   "prof": "0 – 30 m",
+   "desc": "Oursin très commun des petits fonds, qui se couvre souvent de débris pour se camoufler.",
+   "indice": "Piquants violets, bruns ou verdâtres ; il se couvre de coquilles et d'algues."
+  },
+  {
+   "id": "arbacia-lixula",
+   "fr": "Oursin noir",
+   "la": "Arbacia lixula",
+   "groupe": "Échinodermes",
+   "taille": "jusqu'à 6 cm",
+   "prof": "0 – 20 m",
+   "desc": "Oursin des rochers battus par les vagues, il broute les algues encroûtantes.",
+   "indice": "Entièrement noir et brillant, ne se couvre jamais de débris."
+  },
+  {
+   "id": "echinaster-sepositus",
+   "fr": "Étoile de mer rouge",
+   "la": "Echinaster sepositus",
+   "groupe": "Échinodermes",
+   "taille": "jusqu'à 20 cm",
+   "prof": "1 – 200 m",
+   "desc": "L'étoile la plus visible en Méditerranée, posée sur les roches et les herbiers.",
+   "indice": "Cinq bras arrondis rouge vif, surface criblée de petits pores."
+  },
+  {
+   "id": "holothuria-tubulosa",
+   "fr": "Holothurie tubuleuse",
+   "la": "Holothuria tubulosa",
+   "groupe": "Échinodermes",
+   "taille": "jusqu'à 30 cm",
+   "prof": "0 – 100 m",
+   "desc": "Concombre de mer qui aspire le sédiment pour s'en nourrir, très commun près de la posidonie.",
+   "indice": "Corps cylindrique brun couvert de grosses papilles coniques."
+  },
+  {
+   "id": "antedon-mediterranea",
+   "fr": "Comatule",
+   "la": "Antedon mediterranea",
+   "groupe": "Échinodermes",
+   "taille": "jusqu'à 15 cm",
+   "prof": "1 – 100 m",
+   "desc": "Échinoderme accroché aux gorgones ou aux roches, bras déployés pour filtrer le courant.",
+   "indice": "Dix bras plumeux rouges, jaunes ou orangés."
+  },
+  {
+   "id": "paramuricea-clavata",
+   "fr": "Gorgone pourpre",
+   "la": "Paramuricea clavata",
+   "groupe": "Cnidaires",
+   "taille": "jusqu'à 1 m",
+   "prof": "15 – 100 m",
+   "desc": "Gorgone en éventail qui forme de véritables forêts sur les tombants exposés au courant.",
+   "indice": "Grandes ramifications dans un même plan, rouge-violet, parfois à pointes jaunes."
+  },
+  {
+   "id": "eunicella-singularis",
+   "fr": "Gorgone blanche",
+   "la": "Eunicella singularis",
+   "groupe": "Cnidaires",
+   "taille": "jusqu'à 50 cm",
+   "prof": "5 – 60 m",
+   "desc": "Gorgone des fonds rocheux éclairés, souvent plus haute que large.",
+   "indice": "Branches blanches à grisâtres dressées comme des candélabres."
+  },
+  {
+   "id": "corallium-rubrum",
+   "fr": "Corail rouge",
+   "la": "Corallium rubrum",
+   "groupe": "Cnidaires",
+   "taille": "jusqu'à 30 cm",
+   "prof": "10 – 300 m",
+   "protege": true,
+   "desc": "Colonie à croissance très lente qui pend des plafonds de grottes et des surplombs. Ne jamais le toucher.",
+   "indice": "Squelette rouge vif et petits polypes blancs à huit tentacules."
+  },
+  {
+   "id": "anemonia-viridis",
+   "fr": "Anémone verte",
+   "la": "Anemonia viridis",
+   "groupe": "Cnidaires",
+   "taille": "jusqu'à 10 cm",
+   "prof": "0 – 20 m",
+   "desc": "Anémone des petits fonds éclairés, à tentacules non rétractiles.",
+   "indice": "Longs tentacules verts souvent terminés de violet."
+  },
+  {
+   "id": "parazoanthus-axinellae",
+   "fr": "Anémone encroûtante jaune",
+   "la": "Parazoanthus axinellae",
+   "groupe": "Cnidaires",
+   "taille": "polype de 1 à 2 cm",
+   "prof": "5 – 100 m",
+   "desc": "Petits polypes coloniaux qui tapissent les parois ombragées d'un jaune éclatant.",
+   "indice": "Tapis de petits polypes jaunes à couronne de tentacules."
+  },
+  {
+   "id": "astroides-calycularis",
+   "fr": "Astroïde orange",
+   "la": "Astroides calycularis",
+   "groupe": "Cnidaires",
+   "taille": "polype d'environ 1 cm",
+   "prof": "0 – 50 m",
+   "desc": "Corail colonial des parois ombragées, plutôt présent dans le sud de la Méditerranée.",
+   "indice": "Polypes orange vif serrés les uns contre les autres."
+  },
+  {
+   "id": "pelagia-noctiluca",
+   "fr": "Pélagie",
+   "la": "Pelagia noctiluca",
+   "groupe": "Cnidaires",
+   "taille": "ombrelle jusqu'à 10 cm",
+   "prof": "pleine eau",
+   "desc": "Méduse très urticante qui arrive par vagues sur les côtes. Elle luit la nuit quand on l'agite.",
+   "indice": "Ombrelle rose-mauve couverte de verrues, longs tentacules fins."
+  },
+  {
+   "id": "cotylorhiza-tuberculata",
+   "fr": "Méduse œuf au plat",
+   "la": "Cotylorhiza tuberculata",
+   "groupe": "Cnidaires",
+   "taille": "ombrelle jusqu'à 35 cm",
+   "prof": "pleine eau",
+   "desc": "Grosse méduse peu urticante qui apparaît en fin d'été, souvent accompagnée de petits poissons.",
+   "indice": "Ombrelle jaune avec un dôme central orangé, comme un œuf au plat."
+  },
+  {
+   "id": "crambe-crambe",
+   "fr": "Éponge encroûtante rouge",
+   "la": "Crambe crambe",
+   "groupe": "Éponges",
+   "taille": "plaques jusqu'à 50 cm",
+   "prof": "0 – 40 m",
+   "desc": "Éponge qui forme des plaques fines sur les rochers ombragés.",
+   "indice": "Plaque rouge-orangé vif, surface parcourue de petits canaux."
+  },
+  {
+   "id": "chondrosia-reniformis",
+   "fr": "Éponge rein",
+   "la": "Chondrosia reniformis",
+   "groupe": "Éponges",
+   "taille": "jusqu'à 30 cm",
+   "prof": "1 – 50 m",
+   "desc": "Éponge ferme au toucher comme du cuir, fréquente sous les surplombs.",
+   "indice": "Masse lisse et brillante brun-gris en forme de rein ou de galette."
+  },
+  {
+   "id": "axinella-polypoides",
+   "fr": "Axinelle",
+   "la": "Axinella polypoides",
+   "groupe": "Éponges",
+   "taille": "jusqu'à 60 cm",
+   "prof": "20 – 100 m",
+   "desc": "Éponge dressée des fonds coralligènes, souvent colonisée par l'anémone encroûtante jaune.",
+   "indice": "Tiges ramifiées jaune-orangé dressées comme un petit arbre."
+  },
+  {
+   "id": "sabella-spallanzanii",
+   "fr": "Spirographe",
+   "la": "Sabella spallanzanii",
+   "groupe": "Vers",
+   "taille": "jusqu'à 40 cm",
+   "prof": "1 – 30 m",
+   "desc": "Ver tubicole qui déploie un panache en spirale et le rentre au moindre mouvement d'eau.",
+   "indice": "Panache en spirale au sommet d'un long tube souple."
+  },
+  {
+   "id": "protula-tubularia",
+   "fr": "Protule",
+   "la": "Protula tubularia",
+   "groupe": "Vers",
+   "taille": "jusqu'à 10 cm",
+   "prof": "5 – 100 m",
+   "desc": "Ver qui vit dans un tube calcaire blanc fixé aux roches.",
+   "indice": "Tube blanc dur et double panache rouge ou orange."
+  },
+  {
+   "id": "hermodice-carunculata",
+   "fr": "Ver de feu",
+   "la": "Hermodice carunculata",
+   "groupe": "Vers",
+   "taille": "jusqu'à 30 cm",
+   "prof": "0 – 60 m",
+   "desc": "Ver errant aux soies urticantes, présent surtout dans les zones chaudes. À ne pas toucher.",
+   "indice": "Corps plat orangé-vert bordé de touffes de soies blanches."
+  },
+  {
+   "id": "halocynthia-papillosa",
+   "fr": "Ascidie rouge",
+   "la": "Halocynthia papillosa",
+   "groupe": "Ascidies",
+   "taille": "jusqu'à 15 cm",
+   "prof": "5 – 100 m",
+   "desc": "Animal filtreur fixé aux roches ombragées, qui pompe l'eau par deux siphons.",
+   "indice": "Sac rouge vif avec deux orifices bordés de petites soies."
+  },
+  {
+   "id": "posidonia-oceanica",
+   "fr": "Posidonie",
+   "la": "Posidonia oceanica",
+   "groupe": "Plantes",
+   "taille": "feuilles jusqu'à 1,5 m",
+   "prof": "0 – 40 m",
+   "protege": true,
+   "desc": "Plante à fleurs endémique de Méditerranée qui forme des herbiers, véritables nurseries pour les poissons.",
+   "indice": "Longs rubans verts serrés ; les boules de fibres sur les plages viennent d'elle."
+  },
+  {
+   "id": "caretta-caretta",
+   "fr": "Tortue caouanne",
+   "la": "Caretta caretta",
+   "groupe": "Reptiles et mammifères",
+   "taille": "jusqu'à 1,1 m",
+   "prof": "surface – 100 m",
+   "protege": true,
+   "desc": "La tortue marine la plus fréquente en Méditerranée ; quelques pontes ont lieu sur les plages françaises.",
+   "indice": "Grosse tête, carapace brun-rougeâtre en forme de cœur."
+  },
+  {
+   "id": "tursiops-truncatus",
+   "fr": "Grand dauphin",
+   "la": "Tursiops truncatus",
+   "groupe": "Reptiles et mammifères",
+   "taille": "jusqu'à 4 m",
+   "prof": "surface",
+   "protege": true,
+   "desc": "Dauphin côtier et sociable, parfois croisé lors des trajets en bateau.",
+   "indice": "Gris uni, rostre court et épais, nageoire dorsale en faucille."
+  }
+ ]
+}
