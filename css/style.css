@@ -22,6 +22,7 @@
   --sur-profond: #DCEFEB;
   --ok: #2F7D57;
   --ko: #B3261E;
+  --proche: #C77700;     /* jeux : « en partie » */
 
   --titre: "Bricolage", "Avenir Next", system-ui, sans-serif;
   --texte: "Atkinson", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -44,6 +45,7 @@
     --sur-profond: #CFE6E1;
     --ok: #5FC08E;
     --ko: #F2877F;
+    --proche: #F0A63A;
   }
 }
 
@@ -57,6 +59,7 @@ body {
   min-height: 100dvh;
 }
 img { max-width: 100%; display: block; }
+[hidden] { display: none !important; } /* sinon display: flex des boutons l'emporte sur l'attribut hidden */
 a { color: inherit; }
 button, input, select, textarea { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--parazo); outline-offset: 2px; border-radius: 4px; }
@@ -227,6 +230,99 @@ input:focus, select:focus, textarea:focus { border-color: var(--encre); outline:
 .verdict { margin-top: 16px; }
 .verdict strong { display: block; font-family: var(--titre); font-size: 1.2rem; }
 .score { font: 800 4.5rem/1 var(--titre); letter-spacing: -0.03em; }
+
+/* ---------- Jeux ---------- */
+.lecteur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.choix-zone { display: block; }
+.choix-zone > span { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; }
+
+.carte-jour {
+  display: block; position: relative; text-decoration: none; margin-top: 8px;
+  background: var(--fond-profond); color: var(--sur-profond);
+  border-radius: var(--r-grand); padding: 20px 18px;
+}
+.carte-jour small { display: block; opacity: .75; font-size: .85rem; }
+.carte-jour strong { display: block; font: 800 1.5rem/1.15 var(--titre); margin: 4px 0 8px; padding-right: 64px; color: #fff; }
+.carte-jour span { font-size: .95rem; opacity: .85; }
+.carte-jour .serie { position: absolute; top: 16px; right: 16px; background: var(--parazo); color: var(--sur-parazo); font-weight: 800; padding: 4px 12px; border-radius: 999px; opacity: 1; }
+.liste-jeux { list-style: none; padding: 0; margin: 0; }
+.liste-jeux li + li { border-top: 1px solid var(--ligne); }
+.liste-jeux a { display: block; padding: 14px 0; text-decoration: none; }
+.liste-jeux strong { display: block; font: 800 1.15rem var(--titre); }
+.liste-jeux span { display: block; font-size: .92rem; }
+
+/* Champ « propose une espèce » et ses suggestions */
+.suggestions:empty { display: none; }
+.suggestions { border: 1.5px solid var(--ligne); border-radius: var(--r-petit); background: var(--surface); max-height: 320px; overflow: auto; }
+.suggestions button {
+  display: block; width: 100%; text-align: left; min-height: 44px; padding: 8px 14px;
+  border: 0; border-bottom: 1px solid var(--ligne); background: none; cursor: pointer;
+}
+.suggestions button:last-child { border-bottom: 0; }
+.suggestions button span:first-child { font-weight: 700; }
+
+/* Cases de comparaison de l'espèce du jour */
+.cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 6px; margin-top: 8px; }
+.case {
+  position: relative; min-height: 76px; padding: 8px 8px 6px; border-radius: var(--r-petit);
+  color: #fff; font-size: .82rem; line-height: 1.2; display: flex; flex-direction: column; gap: 3px;
+}
+.case small { font-size: .68rem; opacity: .85; text-transform: uppercase; letter-spacing: .03em; }
+.case span { font-weight: 700; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+.case b { position: absolute; right: 7px; bottom: 4px; font-size: 1.1rem; }
+.case.oui { background: var(--ok); }
+.case.proche { background: var(--proche); }
+.case.non { background: var(--ko); }
+.case.inconnu { background: var(--surface); color: var(--encre-douce); box-shadow: inset 0 0 0 1.5px var(--ligne); }
+@media (prefers-color-scheme: dark) { .case.oui, .case.proche, .case.non { color: #10201D; } }
+.legende-cases { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; margin: 14px 0 6px; }
+.pastille { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.pastille.oui { background: var(--ok); } .pastille.proche { background: var(--proche); } .pastille.non { background: var(--ko); }
+.propositions { list-style: none; padding: 0; margin: 10px 0 0; }
+.proposition { padding: 12px 0; border-top: 1px solid var(--ligne); }
+.proposition.gagnante p strong { color: var(--ok); }
+.resultat-jour { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: start; background: var(--surface); border-radius: var(--r-grand); padding: 14px; box-shadow: inset 0 0 0 1.5px var(--ligne); margin-bottom: 16px; }
+.resultat-jour.gagne { box-shadow: inset 0 0 0 2px var(--ok); }
+.resultat-jour h2 a { text-decoration: none; }
+.indice-photo { aspect-ratio: 4 / 3; }
+.indice-photo img { filter: blur(14px) saturate(1.2); transform: scale(1.15); }
+.historique { list-style: none; padding: 0; margin: 0; }
+.historique li { display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 8px 0; border-bottom: 1px solid var(--ligne); }
+.historique .gagne { color: var(--ok); margin-left: auto; }
+.historique .perdu { color: var(--ko); margin-left: auto; }
+
+/* Zoom */
+.zoom-cadre { aspect-ratio: 4 / 3; border-radius: var(--r-grand); }
+.zoom-cadre img { transition: transform .6s ease; }
+
+/* Qui suis-je */
+.indices { padding-left: 1.4em; margin: 0; }
+.indices li { padding: 8px 0; }
+.indices li + li { border-top: 1px solid var(--ligne); }
+
+/* Plus ou moins */
+.duel { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.duel-carte {
+  display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 8px 8px 12px; cursor: pointer;
+  background: var(--surface); border: 1.5px solid var(--ligne); border-radius: var(--r-grand);
+}
+.duel-carte .vignette { width: 100%; }
+.duel-carte strong { font-family: var(--titre); font-size: 1.05rem; margin-top: 4px; }
+.duel-carte .latin { font-size: .8rem; }
+.duel-carte .valeur { font: 800 1.4rem var(--titre); }
+.duel-carte.juste { border-color: var(--ok); box-shadow: inset 0 0 0 1.5px var(--ok); }
+.duel-carte.faux { opacity: .7; }
+
+/* Chaîne alimentaire */
+.chaine { list-style: none; padding: 0; margin: 16px 0 0; }
+.maillon { padding: 10px 12px 10px 14px; border-left: 5px solid var(--ligne); background: var(--surface); border-radius: 0 var(--r-petit) var(--r-petit) 0; }
+.maillon + .maillon { margin-top: 8px; }
+.maillon small { display: block; font-size: .85rem; margin-top: 2px; }
+.maillon.extremite { border-left-color: var(--parazo); }
+.maillon.oui { border-left-color: var(--ok); }
+.maillon.proche { border-left-color: var(--proche); }
+.maillon.non { border-left-color: var(--ko); }
+.solution { margin: 6px 0 0; padding-left: 1.3em; }
 
 /* ---------- Divers ---------- */
 #toast {

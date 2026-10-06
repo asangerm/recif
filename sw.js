@@ -2,7 +2,7 @@
 //
 // IMPORTANT : à chaque modification d'un fichier de l'appli, augmente VERSION
 // pour que les téléphones récupèrent la nouvelle version.
-const VERSION = "recif-v1.0.2";
+const VERSION = "recif-v1.1.0";
 
 const FICHIERS = [
   "./",
@@ -14,9 +14,16 @@ const FICHIERS = [
   "js/db.js",
   "js/especes.js",
   "js/ui.js",
+  "js/outils-jeux.js",
   "js/vues/carnet.js",
   "js/vues/especes.js",
+  "js/vues/jeux.js",
+  "js/vues/dujour.js",
   "js/vues/quiz.js",
+  "js/vues/zoom.js",
+  "js/vues/indices.js",
+  "js/vues/plusoumoins.js",
+  "js/vues/chaine.js",
   "js/vues/reglages.js",
   "data/species.json",
   "fonts/atkinson-hyperlegible-latin-400-normal.woff2",

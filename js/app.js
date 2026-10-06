@@ -4,6 +4,12 @@
 import { vueCarnet, vuePlongee, vueFormulaire } from "./vues/carnet.js";
 import { vueEspeces, vueFiche } from "./vues/especes.js";
 import { vueQuiz } from "./vues/quiz.js";
+import { vueJeux } from "./vues/jeux.js";
+import { vueDuJour } from "./vues/dujour.js";
+import { vueZoom } from "./vues/zoom.js";
+import { vueIndices } from "./vues/indices.js";
+import { vuePlusOuMoins } from "./vues/plusoumoins.js";
+import { vueChaine } from "./vues/chaine.js";
 import { vueReglages } from "./vues/reglages.js";
 import { demanderStockagePersistant } from "./db.js";
 import { DEDICACE, SIGNATURE } from "./config.js";
@@ -16,7 +22,14 @@ const routes = [
   [/^#\/carnet\/(?<id>\d+)\/modifier$/, vueFormulaire, "carnet"],
   [/^#\/especes$/, vueEspeces, "especes"],
   [/^#\/especes\/(?<id>[\w-]+)$/, vueFiche, "especes"],
-  [/^#\/quiz$/, vueQuiz, "quiz"],
+  [/^#\/jeux$/, vueJeux, "jeux"],
+  [/^#\/jeux\/dujour$/, vueDuJour, "jeux"],
+  [/^#\/jeux\/quiz$/, vueQuiz, "jeux"],
+  [/^#\/quiz$/, vueQuiz, "jeux"], // ancienne adresse du quiz
+  [/^#\/jeux\/zoom$/, vueZoom, "jeux"],
+  [/^#\/jeux\/indices$/, vueIndices, "jeux"],
+  [/^#\/jeux\/plusoumoins$/, vuePlusOuMoins, "jeux"],
+  [/^#\/jeux\/chaine$/, vueChaine, "jeux"],
   [/^#\/reglages$/, vueReglages, "reglages"],
 ];
 

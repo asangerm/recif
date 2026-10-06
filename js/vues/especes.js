@@ -1,7 +1,8 @@
 // Écrans des espèces : liste avec recherche et filtres, puis fiche détaillée.
 
 import * as db from "../db.js";
-import { chargerEspeces, espece, correspond, remplirVignette, photo } from "../especes.js";
+import { chargerEspeces, espece, especesDeLaZone, correspond, remplirVignette, photo } from "../especes.js";
+import { htmlZone, brancherZone } from "../outils-jeux.js";
 import { h, dateCourte } from "../ui.js";
 import { plongeesNumerotees } from "./carnet.js";
 
@@ -27,15 +28,17 @@ const observateur = "IntersectionObserver" in window
   : null;
 
 export async function vueEspeces(main) {
-  const { species, groups, region } = await chargerEspeces();
+  const { groups } = await chargerEspeces();
+  const species = await especesDeLaZone();
   const vues = await compterVues();
   const filtres = ["Toutes", "Déjà croisées", ...groups.filter((g) => species.some((e) => e.groupe === g))];
 
   main.innerHTML = h`
     <header class="entete"><div>
       <h1>Espèces</h1>
-      <p class="doux">${species.length} espèces de ${region}</p>
+      <p class="doux">${species.length} espèces</p>
     </div></header>
+    ${await htmlZone()}
     <input type="search" id="recherche" placeholder="Nom français ou latin" value="${etat.requete}" aria-label="Chercher une espèce" autocomplete="off">
     <div class="filtres" role="group" aria-label="Filtrer par groupe">
       ${filtres.map((f) => h`<button type="button" class="puce" data-groupe="${f}" aria-pressed="${String(etat.groupe === f)}">${f}</button>`)}
@@ -72,6 +75,7 @@ export async function vueEspeces(main) {
     main.querySelectorAll(".filtres button").forEach((x) => x.setAttribute("aria-pressed", x === b));
     afficher();
   });
+  brancherZone(main, () => { etat.groupe = "Toutes"; vueEspeces(main); });
   afficher();
 }
 
@@ -98,12 +102,16 @@ export async function vueFiche(main, { id }) {
         </div>
       </header>
 
-      <p>${e.desc}</p>
-      <div class="indice"><strong>Pour la reconnaître</strong><br>${e.indice}</div>
+      <p>${e.desc}${e.sourceDesc ? h` <a class="credit" href="${e.sourceDesc}" target="_blank" rel="noopener">(Wikipédia)</a>` : ""}</p>
+      ${e.indice ? h`<div class="indice"><strong>Pour la reconnaître</strong><br>${e.indice}</div>` : ""}
 
       <dl class="fiche-mesures">
-        <div><dt>Taille</dt><dd>${e.taille}</dd></div>
-        <div><dt>Profondeur</dt><dd>${e.prof}</dd></div>
+        ${e.taille ? h`<div><dt>Taille</dt><dd>${e.taille}</dd></div>` : ""}
+        ${e.prof ? h`<div><dt>Profondeur</dt><dd>${e.prof}</dd></div>` : ""}
+        ${e.famille ? h`<div><dt>Famille</dt><dd>${e.famille}</dd></div>` : ""}
+        ${e.regime ? h`<div><dt>Régime</dt><dd>${e.regime}</dd></div>` : ""}
+        ${e.habitats?.length ? h`<div><dt>Habitat</dt><dd>${e.habitats.join(", ")}</dd></div>` : ""}
+        ${e.zones?.length ? h`<div><dt>Où la croiser</dt><dd>${e.zones.join(", ")}</dd></div>` : ""}
         ${quiz ? h`<div><dt>Au quiz</dt><dd>${quiz.justes} bonne${quiz.justes > 1 ? "s" : ""} réponse${quiz.justes > 1 ? "s" : ""} sur ${quiz.justes + quiz.fausses}</dd></div>` : ""}
       </dl>
 

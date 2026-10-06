@@ -20,6 +20,32 @@ export async function chargerEspeces() {
 
 export const espece = (id) => index.get(id);
 
+/* ---------------- Zone de plongée choisie ----------------
+   « Je pars aux Philippines » : on choisit une zone (Pacifique Ouest) et le quiz, les jeux
+   et la liste des espèces se limitent à ce qu'on peut y croiser. "" = partout. */
+const CLE_ZONE = "recif-zone";
+export function zoneChoisie() {
+  try { return localStorage.getItem(CLE_ZONE) || ""; } catch { return ""; }
+}
+export function choisirZone(zone) {
+  try { zone ? localStorage.setItem(CLE_ZONE, zone) : localStorage.removeItem(CLE_ZONE); } catch { /* tant pis */ }
+}
+// Espèces de la zone choisie (toutes si aucune zone).
+export async function especesDeLaZone() {
+  const { species } = await chargerEspeces();
+  const zone = zoneChoisie();
+  return zone ? species.filter((e) => e.zones?.includes(zone)) : species;
+}
+
+/* ---------------- Hasard reproductible ----------------
+   Pour que l'espèce du jour soit la même sur deux téléphones, on ne tire pas au hasard :
+   on calcule un nombre à partir d'un texte (la date), toujours le même pour le même texte. */
+export function nombreDepuis(texte) {
+  let x = 2166136261; // hachage FNV-1a, simple et bien réparti
+  for (const c of texte) x = Math.imul(x ^ c.charCodeAt(0), 16777619) >>> 0;
+  return x;
+}
+
 // Recherche tolérante : ignore majuscules et accents, cherche dans le nom français et latin.
 export const normaliser = (t) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 export function correspond(e, requete) {
@@ -49,20 +75,30 @@ function suivante() {
 }
 
 async function viaINaturalist(e) {
-  const url = `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(e.la)}&rank=species&per_page=5`;
-  const rep = await fetch(url);
-  if (!rep.ok) return null;
-  const { results = [] } = await rep.json();
-  const taxon = results.find((t) => t.name?.toLowerCase() === e.la.toLowerCase() && t.default_photo);
-  if (!taxon) return null;
+  // Le catalogue connaît le numéro iNaturalist de la plupart des espèces : sinon on cherche par nom.
+  let taxon;
+  if (e.inat) {
+    const rep = await fetch(`https://api.inaturalist.org/v1/taxa/${e.inat}`);
+    if (!rep.ok) return null;
+    taxon = (await rep.json()).results?.[0];
+  } else {
+    const rep = await fetch(`https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(e.la)}&rank=species&per_page=5`);
+    if (!rep.ok) return null;
+    const { results = [] } = await rep.json();
+    taxon = results.find((t) => t.name?.toLowerCase() === e.la.toLowerCase());
+  }
+  if (!taxon?.default_photo) return null;
   // Seules les photos sous licence libre (license_code rempli) sont téléchargeables :
   // les autres sont « tous droits réservés » et leur serveur refuse qu'on les enregistre.
   let p = taxon.default_photo;
   if (!p.license_code) {
-    const detail = await fetch(`https://api.inaturalist.org/v1/taxa/${taxon.id}`);
-    if (!detail.ok) return null;
-    const photos = (await detail.json()).results?.[0]?.taxon_photos ?? [];
-    p = photos.map((tp) => tp.photo).find((ph) => ph.license_code);
+    let photos = taxon.taxon_photos;
+    if (!photos) {
+      const detail = await fetch(`https://api.inaturalist.org/v1/taxa/${taxon.id}`);
+      if (!detail.ok) return null;
+      photos = (await detail.json()).results?.[0]?.taxon_photos;
+    }
+    p = (photos ?? []).map((tp) => tp.photo).find((ph) => ph.license_code);
     if (!p) return null;
   }
   return {
@@ -153,8 +189,9 @@ export function remplirVignette(el, e) {
   }).catch(() => { el.textContent = "Pas de photo"; });
 }
 
-// Nombre de photos déjà enregistrées pour le hors-ligne.
-export async function photosLocales() {
+// Nombre de photos déjà enregistrées pour le hors-ligne, parmi les espèces données.
+export async function photosLocales(especes) {
+  const ids = new Set(especes.map((e) => e.id));
   const toutes = await db.tous("photos");
-  return toutes.filter((p) => p.blob).length;
+  return toutes.filter((p) => p.blob && ids.has(p.id)).length;
 }

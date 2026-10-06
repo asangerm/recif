@@ -2,7 +2,8 @@
 // Les espèces ratées reviennent plus souvent, celles bien connues de moins en moins.
 
 import * as db from "../db.js";
-import { chargerEspeces, photo } from "../especes.js";
+import { chargerEspeces, especesDeLaZone, photo } from "../especes.js";
+import { rappelZone, sansLeNom } from "../outils-jeux.js";
 import { h } from "../ui.js";
 import { QUESTIONS_PAR_PARTIE } from "../config.js";
 
@@ -34,7 +35,8 @@ async function resultats() {
 
 /* ---------------- Accueil du quiz ---------------- */
 export async function vueQuiz(main) {
-  const { species, groups } = await chargerEspeces();
+  const { groups } = await chargerEspeces();
+  const species = await especesDeLaZone();
   const res = await resultats();
   const croisees = new Set((await db.tous("plongees")).flatMap((p) => p.especes || []));
   const nbMaitrisees = species.filter((e) => maitrisee(res.get(e.id))).length;
@@ -42,8 +44,10 @@ export async function vueQuiz(main) {
   if (!choix.includes(portee)) portee = "Toutes";
 
   main.innerHTML = h`
+    <a class="retour" href="#/jeux">‹ Jeux</a>
     <header class="entete"><div>
-      <h1>Quiz</h1>
+      <h1>Quiz photo</h1>
+      ${rappelZone(species.length)}
       <p class="doux">${nbMaitrisees} espèce${nbMaitrisees > 1 ? "s" : ""} bien connue${nbMaitrisees > 1 ? "s" : ""} sur ${species.length}</p>
     </div></header>
     <div class="barre" aria-hidden="true"><div style="width:${Math.round((100 * nbMaitrisees) / species.length)}%"></div></div>
@@ -68,7 +72,7 @@ export async function vueQuiz(main) {
 
 /* ---------------- Partie ---------------- */
 async function partie(main) {
-  const { species } = await chargerEspeces();
+  const species = await especesDeLaZone();
   const res = await resultats();
   const croisees = new Set((await db.tous("plongees")).flatMap((p) => p.especes || []));
   const pool = species.filter((e) =>
@@ -102,7 +106,7 @@ async function partie(main) {
     const avecPhoto = Boolean(p);
     enigme.innerHTML = p
       ? h`<div class="vignette quiz-photo"><img src="${p.url}" alt="Photo de l'espèce à reconnaître"></div>`
-      : h`<div class="quiz-texte"><small>Pas de photo disponible, voici un indice. Qui suis-je ?</small>${q.bonne.indice}</div>`;
+      : h`<div class="quiz-texte"><small>Pas de photo disponible, voici un indice. Qui suis-je ?</small>${q.bonne.indice || sansLeNom(q.bonne.desc, q.bonne)}</div>`;
     prechargee(i + 1);
     // Les réponses ne deviennent cliquables qu'une fois la photo (ou l'indice) affichée.
     main.querySelectorAll(".choix button").forEach((x) => (x.disabled = false));
@@ -129,7 +133,7 @@ async function partie(main) {
         <div class="pile-serree">
           <strong style="color:var(${juste ? "--ok" : "--ko"})">${juste ? "Bien vu !" : `C'était ${q.bonne.fr}`}</strong>
           <p class="latin">${q.bonne.la}</p>
-          <p>${avecPhoto ? q.bonne.indice : q.bonne.desc}</p>
+          <p>${avecPhoto ? q.bonne.indice || q.bonne.desc : q.bonne.desc}</p>
         </div>
         <button class="bouton large" id="suivante" style="margin-top:16px">${derniere ? "Voir mon score" : "Question suivante"}</button>`;
       const suivante = main.querySelector("#suivante");

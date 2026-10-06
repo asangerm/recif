@@ -1,14 +1,16 @@
-// Réglages : photos hors-ligne, sauvegarde du carnet, remise à zéro du quiz.
+// Réglages : photos hors-ligne, sauvegarde du carnet et des jeux, remise à zéro du quiz.
 
 import * as db from "../db.js";
-import { chargerEspeces, photo, photosLocales } from "../especes.js";
+import { especesDeLaZone, photo, photosLocales, zoneChoisie } from "../especes.js";
 import { h, toast, aujourdhui } from "../ui.js";
 
-export const VERSION_APP = "1.0.2";
+export const VERSION_APP = "1.1.0";
 
 export async function vueReglages(main) {
-  const { species } = await chargerEspeces();
-  const nbPhotos = await photosLocales();
+  // Les photos à télécharger sont celles de la zone choisie dans Jeux ou Espèces (toutes sinon).
+  const species = await especesDeLaZone();
+  const zone = zoneChoisie();
+  const nbPhotos = await photosLocales(species);
   const nbPlongees = (await db.tous("plongees")).length;
   const persistant = navigator.storage?.persisted ? await navigator.storage.persisted() : false;
 
@@ -17,9 +19,10 @@ export async function vueReglages(main) {
 
     <section class="pile">
       <h2>Photos hors-ligne</h2>
+      <p>${zone ? `Zone choisie : ${zone}.` : "Toutes les zones."} <a href="#/jeux">Changer</a></p>
       <p class="doux" id="etat-photos">${nbPhotos} photo${nbPhotos > 1 ? "s" : ""} sur ${species.length} enregistrée${nbPhotos > 1 ? "s" : ""} sur ce téléphone.</p>
       <div class="barre"><div id="progres-photos" style="width:${Math.round((100 * nbPhotos) / species.length)}%"></div></div>
-      <p class="doux">À faire une fois en wifi, avant de partir en bateau : le quiz aura ensuite toutes ses photos sans réseau.</p>
+      <p class="doux">À faire une fois en wifi, avant de partir : les jeux auront ensuite toutes leurs photos sans réseau. Compte environ 30 Mo pour toutes les zones.</p>
       <button class="bouton" id="telecharger" ${nbPhotos >= species.length ? h`disabled` : ""}>
         ${nbPhotos >= species.length ? "Toutes les photos sont enregistrées" : "Télécharger les photos"}
       </button>
@@ -63,7 +66,7 @@ export async function vueReglages(main) {
       faites++;
       barre.style.width = `${(100 * faites) / species.length}%`;
     }
-    const n = await photosLocales();
+    const n = await photosLocales(species);
     etat.textContent = `${n} photo${n > 1 ? "s" : ""} sur ${species.length} enregistrée${n > 1 ? "s" : ""} sur ce téléphone.`;
     bouton.textContent = n >= species.length ? "Toutes les photos sont enregistrées" : "Réessayer pour les photos manquantes";
     bouton.disabled = n >= species.length;
@@ -78,6 +81,7 @@ export async function vueReglages(main) {
       exporteLe: new Date().toISOString(),
       plongees: await db.tous("plongees"),
       quiz: await db.tous("quiz"),
+      dujour: await db.tous("dujour"), // ajouté en 1.1 : les anciennes versions l'ignorent
     };
     const blob = new Blob([JSON.stringify(sauvegarde, null, 2)], { type: "application/json" });
     const nom = `recif-carnet-${aujourdhui()}.json`;
@@ -108,6 +112,10 @@ export async function vueReglages(main) {
     if (Array.isArray(data.quiz)) {
       await db.vider("quiz");
       for (const r of data.quiz) await db.ecrire("quiz", r);
+    }
+    if (Array.isArray(data.dujour)) {
+      await db.vider("dujour");
+      for (const r of data.dujour) await db.ecrire("dujour", r);
     }
     toast("Sauvegarde importée");
     vueReglages(main);

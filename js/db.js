@@ -1,11 +1,12 @@
 // Stockage local avec IndexedDB : tout reste sur le téléphone, rien n'est envoyé ailleurs.
-// Trois "tables" (object stores) :
+// Quatre "tables" (object stores) :
 //   plongees : les plongées du carnet
 //   quiz     : les résultats du quiz par espèce { id, justes, fausses, derniere }
 //   photos   : les photos des espèces téléchargées pour le hors-ligne { id, blob, credit, page }
+//   dujour   : les parties de « l'espèce du jour » { date, espece, essais: [ids], fini, trouve }
 
 const NOM_BASE = "recif";
-const VERSION_BASE = 1;
+const VERSION_BASE = 2; // 2 : ajout de la table dujour
 let promesseBase;
 
 function ouvrir() {
@@ -21,6 +22,7 @@ function ouvrir() {
         }
         if (!db.objectStoreNames.contains("quiz")) db.createObjectStore("quiz", { keyPath: "id" });
         if (!db.objectStoreNames.contains("photos")) db.createObjectStore("photos", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("dujour")) db.createObjectStore("dujour", { keyPath: "date" });
       };
       req.onsuccess = () => resoudre(req.result);
       req.onerror = () => rejeter(req.error);
