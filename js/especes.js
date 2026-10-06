@@ -55,7 +55,16 @@ async function viaINaturalist(e) {
   const { results = [] } = await rep.json();
   const taxon = results.find((t) => t.name?.toLowerCase() === e.la.toLowerCase() && t.default_photo);
   if (!taxon) return null;
-  const p = taxon.default_photo;
+  // Seules les photos sous licence libre (license_code rempli) sont téléchargeables :
+  // les autres sont « tous droits réservés » et leur serveur refuse qu'on les enregistre.
+  let p = taxon.default_photo;
+  if (!p.license_code) {
+    const detail = await fetch(`https://api.inaturalist.org/v1/taxa/${taxon.id}`);
+    if (!detail.ok) return null;
+    const photos = (await detail.json()).results?.[0]?.taxon_photos ?? [];
+    p = photos.map((tp) => tp.photo).find((ph) => ph.license_code);
+    if (!p) return null;
+  }
   return {
     url: p.medium_url || p.url,
     credit: p.attribution || "iNaturalist",
@@ -70,21 +79,30 @@ async function viaWikipedia(e, langue) {
   const json = await rep.json();
   const src = json.thumbnail?.source;
   if (!src) return null;
+  // Wikimedia n'accepte que certaines largeurs (500 en fait partie, pas 640).
+  // Si l'image d'origine est plus petite, on la prend telle quelle.
+  const origine = json.originalimage;
   return {
-    url: src.replace(/\/\d+px-/, "/640px-"),
+    url: origine && origine.width <= 500 ? origine.source : src.replace(/\/\d+px-/, "/500px-"),
     credit: "Wikipédia / Wikimedia Commons",
     page: json.content_urls?.desktop?.page,
   };
 }
 
-async function chercherSource(e) {
+// Essaie les sources dans l'ordre et garde la première image qu'on arrive à télécharger.
+// Si aucune ne se télécharge, renvoie quand même la première trouvée (affichée depuis Internet).
+async function chercherPhoto(e) {
+  let premiere = null;
   for (const essai of [() => viaINaturalist(e), () => viaWikipedia(e, "fr"), () => viaWikipedia(e, "en")]) {
     try {
-      const r = await essai();
-      if (r) return r;
+      const source = await essai();
+      if (!source) continue;
+      premiere ??= source;
+      const rep = await fetch(source.url, { mode: "cors" });
+      if (rep.ok) return { ...source, blob: await rep.blob() };
     } catch { /* on passe à la source suivante */ }
   }
-  return null;
+  return premiere;
 }
 
 /**
@@ -94,7 +112,8 @@ async function chercherSource(e) {
  * forcer : relance la recherche même si aucune photo n'avait été trouvée récemment.
  */
 export async function photo(e, { forcer = false } = {}) {
-  if (enMemoire.has(e.id)) return enMemoire.get(e.id);
+  // forcer : on ne se contente pas d'une photo seulement affichée depuis Internet.
+  if (enMemoire.has(e.id) && (!forcer || enMemoire.get(e.id).locale)) return enMemoire.get(e.id);
 
   const stockee = await db.lire("photos", e.id);
   if (stockee?.blob) {
@@ -107,20 +126,16 @@ export async function photo(e, { forcer = false } = {}) {
   if (!navigator.onLine) return null;
 
   return limiter(async () => {
-    const source = await chercherSource(e);
+    const source = await chercherPhoto(e);
     if (!source) {
       await db.ecrire("photos", { id: e.id, absente: true, date: Date.now() });
       return null;
     }
-    let r = { ...source, locale: false };
-    try {
-      const rep = await fetch(source.url, { mode: "cors" });
-      if (rep.ok) {
-        const blob = await rep.blob();
-        await db.ecrire("photos", { id: e.id, blob, credit: source.credit, page: source.page });
-        r = { url: URL.createObjectURL(blob), credit: source.credit, page: source.page, locale: true };
-      }
-    } catch { /* l'image restera affichée depuis Internet */ }
+    let r = { url: source.url, credit: source.credit, page: source.page, locale: false };
+    if (source.blob) {
+      await db.ecrire("photos", { id: e.id, blob: source.blob, credit: source.credit, page: source.page });
+      r = { url: URL.createObjectURL(source.blob), credit: source.credit, page: source.page, locale: true };
+    }
     enMemoire.set(e.id, r);
     return r;
   });
