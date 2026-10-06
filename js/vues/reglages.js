@@ -4,7 +4,7 @@ import * as db from "../db.js";
 import { chargerEspeces, photo, photosLocales } from "../especes.js";
 import { h, toast, aujourdhui } from "../ui.js";
 
-export const VERSION_APP = "1.0.1";
+export const VERSION_APP = "1.0.2";
 
 export async function vueReglages(main) {
   const { species } = await chargerEspeces();

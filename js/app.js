@@ -20,9 +20,15 @@ const routes = [
   [/^#\/reglages$/, vueReglages, "reglages"],
 ];
 
-const main = document.getElementById("vue");
+let main = document.getElementById("vue");
+
+// Numéro du dernier affichage demandé : si un écran lent finit après un autre demandé
+// plus tard, il ne doit pas l'écraser. On dessine donc dans un élément à part,
+// qu'on ne met en place que si on est toujours le dernier affichage demandé.
+let dernierAffichage = 0;
 
 async function afficher() {
+  const numero = ++dernierAffichage;
   const adresse = location.hash || "#/carnet";
   const route = routes.find(([motif]) => motif.test(adresse));
   if (!route) { location.replace("#/carnet"); return; }
@@ -33,12 +39,16 @@ async function afficher() {
     else a.removeAttribute("aria-current");
   });
 
+  const nouveau = main.cloneNode(false); // même <main id="vue">, mais vide
   try {
-    await vue(main, adresse.match(motif).groups || {});
+    await vue(nouveau, adresse.match(motif).groups || {});
   } catch (err) {
     console.error(err);
-    main.innerHTML = h`<div class="vide pile"><h2>Cet écran n'a pas pu s'afficher</h2><p class="doux">${err.message}</p><a class="bouton" href="#/carnet">Revenir au carnet</a></div>`;
+    nouveau.innerHTML = h`<div class="vide pile"><h2>Cet écran n'a pas pu s'afficher</h2><p class="doux">${err.message}</p><a class="bouton" href="#/carnet">Revenir au carnet</a></div>`;
   }
+  if (numero !== dernierAffichage) return; // un écran plus récent a été demandé entre-temps
+  main.replaceWith(nouveau);
+  main = nouveau;
   window.scrollTo(0, 0);
   main.focus({ preventScroll: true });
 }
@@ -66,6 +76,12 @@ function localStorageSur(cle, valeur) {
 }
 
 window.addEventListener("hashchange", afficher);
+// Toucher l'onglet de l'écran déjà dans l'adresse ne change pas l'adresse, donc pas de
+// hashchange : on redessine quand même (utile si l'écran affiché ne correspond plus).
+document.querySelector(".onglets").addEventListener("click", (ev) => {
+  const lien = ev.target.closest("a");
+  if (lien && lien.hash === location.hash) afficher();
+});
 if (!dedicace()) afficher();
 demanderStockagePersistant();
 

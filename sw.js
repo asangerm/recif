@@ -2,7 +2,7 @@
 //
 // IMPORTANT : à chaque modification d'un fichier de l'appli, augmente VERSION
 // pour que les téléphones récupèrent la nouvelle version.
-const VERSION = "recif-v1.0.1";
+const VERSION = "recif-v1.0.2";
 
 const FICHIERS = [
   "./",
